@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
+    <RootNamespace>MPTech.Mongo.Extensions</RootNamespace>
+    <PackageId>MPTech.Mongo.Extensions</PackageId>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/visschersm/MPTech.Mongo.Extensions</RepositoryUrl>
+    <Version>0.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="mongodb.driver" Version="2.12.4" />
+  </ItemGroup>
+
+</Project>
