@@ -1,3 +1,6 @@
+# Dotnet action setup
+# https://github.com/actions/setup-dotnet
+# https://docs.github.com/en/actions/guides/building-and-testing-net
 name: .NET
 
 on:
@@ -13,14 +16,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
         include-prerelease: true
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
+    - name: Build dotnet
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
