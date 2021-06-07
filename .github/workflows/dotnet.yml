@@ -1,5 +1,6 @@
 # Dotnet action setup
 # https://github.com/actions/setup-dotnet
+# https://docs.github.com/en/actions/guides/building-and-testing-net
 name: .NET
 
 on:
@@ -13,17 +14,16 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        dotnet: [ 6.0.x, 5.0.x, 3.1.x ]
     steps:
     - uses: actions/checkout@v2
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ matrix.dotnet }}
+        dotnet-version: 6.0.x
         include-prerelease: true
-    - name: Build ${{ matrix.dotnet }} 
-      run: dotnet build
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build dotnet
+      run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
