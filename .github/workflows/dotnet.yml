@@ -22,8 +22,11 @@ jobs:
         dotnet-version: 6.0.x
         include-prerelease: true
     - name: Restore dependencies
+      working-directory: src
       run: dotnet restore
     - name: Build dotnet
+      working-directory: src
       run: dotnet build --no-restore
     - name: Test
+      working-directory: tests
       run: dotnet test --no-build --verbosity normal
