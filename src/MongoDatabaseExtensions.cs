@@ -3,7 +3,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MPTech.Mongo.Extensions
+namespace MatrTech.Utilities.Extensions.Mongo
 {
     public static class MongoDatabaseExtensions
     {
