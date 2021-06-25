@@ -3,11 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Extensions.Mongo", "src\Utilities.Extensions.Mongo.csproj", "{42C057C2-6B15-48CB-9B80-EC52BF6AF618}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F9899D24-2D9D-4D29-B79E-4BD01EBF20D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Extensions.Mongo.UnitTests", "tests\Utilities.Extensions.Mongo.UnitTests\Utilities.Extensions.Mongo.UnitTests.csproj", "{E4608D6E-425A-4323-988C-A3EAD035CFEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Extensions.Mongo.UnitTests", "tests\Utilities.Extensions.Mongo.UnitTests\Utilities.Extensions.Mongo.UnitTests.csproj", "{E4608D6E-425A-4323-988C-A3EAD035CFEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9F3D9F57-F2DA-4EC5-9EE0-A3FA13B40784}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Extensions.Mongo", "src\Utilities.Extensions.Mongo\Utilities.Extensions.Mongo.csproj", "{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F7F01215-F39E-45C1-8B81-2C8E9E39ADB0}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,22 +27,7 @@ Global
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Debug|x64.Build.0 = Debug|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Debug|x86.Build.0 = Debug|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Release|x64.ActiveCfg = Release|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Release|x64.Build.0 = Release|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Release|x86.ActiveCfg = Release|Any CPU
-		{42C057C2-6B15-48CB-9B80-EC52BF6AF618}.Release|x86.Build.0 = Release|Any CPU
 		{E4608D6E-425A-4323-988C-A3EAD035CFEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E4608D6E-425A-4323-988C-A3EAD035CFEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4608D6E-425A-4323-988C-A3EAD035CFEC}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -46,8 +40,27 @@ Global
 		{E4608D6E-425A-4323-988C-A3EAD035CFEC}.Release|x64.Build.0 = Release|Any CPU
 		{E4608D6E-425A-4323-988C-A3EAD035CFEC}.Release|x86.ActiveCfg = Release|Any CPU
 		{E4608D6E-425A-4323-988C-A3EAD035CFEC}.Release|x86.Build.0 = Release|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Debug|x64.Build.0 = Debug|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Debug|x86.Build.0 = Debug|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Release|x64.ActiveCfg = Release|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Release|x64.Build.0 = Release|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Release|x86.ActiveCfg = Release|Any CPU
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E4608D6E-425A-4323-988C-A3EAD035CFEC} = {F9899D24-2D9D-4D29-B79E-4BD01EBF20D1}
+		{B79E5A51-CFF8-4DD8-8AE4-C33AFFDFA5C5} = {9F3D9F57-F2DA-4EC5-9EE0-A3FA13B40784}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C621628D-6E46-41F8-88F8-BB30B7764FE6}
 	EndGlobalSection
 EndGlobal
