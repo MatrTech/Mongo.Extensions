@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MatrTech.Utilities.Extensions.Mongo
 {
-    public static class MongoDatabaseExtensions
+    public static partial class MongoDatabaseExtensions
     {
         /// <summary>
         /// Creates a <see cref="List{string}"/> of all collections in the given <paramref name="database"/>.
@@ -63,8 +63,16 @@ namespace MatrTech.Utilities.Extensions.Mongo
             if (!collectionNames.Any())
                 collectionNames = (await database.CollectionNamesAsListAsync()).ToArray();
 
+#if NETCOREAPP3_1
+            var waitList = new List<Task>();
+#else
+            List<Task> waitList = new();
+#endif
+
             collectionNames.ToList()
-                .ForEach(collectionName => database.DropCollectionAsync(collectionName));
+                .ForEach(collectionName => waitList.Add(database.DropCollectionAsync(collectionName)));
+
+            Task.WaitAll(waitList.ToArray());
         }
 
         /// <summary>
@@ -75,7 +83,10 @@ namespace MatrTech.Utilities.Extensions.Mongo
         public static void DropAllDatabases(this IMongoClient client, params string[] databaseNames)
         {
             if (!databaseNames.Any())
-                databaseNames = client.DatabaseNamesAsList().ToArray();
+                databaseNames = client.DatabaseNamesAsList()
+                    .Where(x => x != "admin")
+                    .Where(x => x != "local")
+                    .ToArray();
 
             databaseNames.ToList()
                 .ForEach(databaseName => client.DropDatabase(databaseName));
@@ -90,10 +101,16 @@ namespace MatrTech.Utilities.Extensions.Mongo
         public static async Task DropAllDatabasesAsync(this IMongoClient client, params string[] databaseNames)
         {
             if (!databaseNames.Any())
-                databaseNames = (await client.DatabaseNamesAsListAsync()).ToArray();
+                databaseNames = (await client.DatabaseNamesAsListAsync())
+                    .Where(x => x != "admin")
+                    .Where(x => x != "local")
+                    .ToArray();
 
+#if NETCOREAPP3_1
+            var waitList = new List<Task>();
+#else
             List<Task> waitList = new();
-
+#endif
             databaseNames.ToList()
                 .ForEach(databaseName => waitList.Add(client.DropDatabaseAsync(databaseName)));
 

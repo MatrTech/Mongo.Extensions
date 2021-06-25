@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
+    <RootNamespace>MatrTech.Utilities.Extensions.Mongo</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <OutputPath>..\..\..\..\local-packages</OutputPath>
+    <Nullable>enable</Nullable>
+
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+
+    <MajorVersion>0</MajorVersion>
+    <MinorVersion>0</MinorVersion>
+    <PatchVersion>1</PatchVersion>
+    <BuildVersion>$([System.DateTime]::Now.ToString("yyMMddHHmm"))</BuildVersion>
+    <Version>$(MajorVersion).$(MinorVersion).$(PatchVersion).$(BuildVersion)</Version>
+
+    <PackageId>MatrTech.Utilities.Extensions.Mongo</PackageId>
+    <Authors>MatrTech</Authors>
+    <Company>MatrTech</Company>
+    <Copyright>MatrTech 2021</Copyright>
+    <AssemblyName>MatrTech.Utilities.Extensions.Mongo</AssemblyName>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/MatrTech/Utilities.Extensions.Mongo</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+    <PackageReference Include="mongodb.driver" Version="2.12.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>
