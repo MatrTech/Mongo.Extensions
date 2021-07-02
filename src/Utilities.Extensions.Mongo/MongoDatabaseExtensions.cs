@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -115,6 +116,35 @@ namespace MatrTech.Utilities.Extensions.Mongo
                 .ForEach(databaseName => waitList.Add(client.DropDatabaseAsync(databaseName)));
 
             Task.WaitAll(waitList.ToArray());
+        }
+
+        /// <summary>
+        /// Checks to see if <paramref name="source"/> contains a collection with the given <paramref name="collectionName"/>.
+        /// </summary>
+        /// <param name="source">The mongo database to check.</param>
+        /// <param name="collectionName">Name of the collection to check.</param>
+        /// <returns>True if contains the collection with the <paramref name="collectionName"/>, otherwise false</returns>
+        public static bool CollectionExists(this IMongoDatabase source, string collectionName)
+        {
+            var filter = new BsonDocument("name", collectionName);
+            var options = new ListCollectionNamesOptions { Filter = filter };
+
+            return source.ListCollectionNames(options).Any();
+        }
+
+        /// <summary>
+        /// Checks to see if <paramref name="source"/> contains a collection with the given <paramref name="collectionName"/>.
+        /// </summary>
+        /// <param name="source">The mongo database to check.</param>
+        /// <param name="collectionName">Name of the collection to check.</param>
+        /// <returns>True if contains the collection with the <paramref name="collectionName"/>, otherwise false</returns>
+        public static async Task<bool> CollectionExistsAsync(this IMongoDatabase source, string collectionName)
+        {
+            var filter = new BsonDocument("name", collectionName);
+            var options = new ListCollectionNamesOptions { Filter = filter };
+
+            var collections = await source.ListCollectionNamesAsync(options);
+            return collections.Any();
         }
     }
 }

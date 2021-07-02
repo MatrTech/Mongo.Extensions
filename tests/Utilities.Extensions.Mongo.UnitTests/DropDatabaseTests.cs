@@ -1,133 +1,14 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Bson;
-using MongoDB.Driver;
 using System;
 using System.Threading.Tasks;
 
 namespace MatrTech.Utilities.Extensions.Mongo.UnitTests
 {
     [TestClass]
-    public class MongoDatabaseExtensionsTests
+    public class DropDatabaseTests : MongoDatabaseExtensionsTestsBase
     {
-        private static MongoClient client = null!;
-        private IMongoDatabase? database;
-        private IMongoDatabase? otherDatabase;
-
-        public MongoDatabaseExtensionsTests()
-        {
-            client = new MongoClient("mongodb://localhost:27017");
-        }
-
-        [ClassCleanup]
-        public static void ClassCleanup()
-        {
-            client.DropAllDatabases();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            database?.DropAllCollections();
-            otherDatabase?.DropAllCollections();
-        }
-
-        [TestMethod]
-        public void CollectionNamesAsList_CollectionInDatabase_ListContainsCollectionName()
-        {
-            database = client.GetDatabase($"test-database-{Guid.NewGuid()}");
-            var collectionName = Guid.NewGuid().ToString();
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            collection.InsertOne(new BsonDocument { });
-
-            var result = database.CollectionNamesAsList();
-
-            result.Should().Contain(collectionName);
-        }
-
-        [TestMethod]
-        public void CollectionNamesAsList_CollectionNotInDatabase_ListDoesNotContainsCollectionName()
-        {
-            database = client.GetDatabase($"test-database-{Guid.NewGuid()}");
-            var collectionName = Guid.NewGuid().ToString();
-
-            var result = database.CollectionNamesAsList();
-
-            result.Should().NotContain(collectionName);
-        }
-
-        [TestMethod]
-        public async Task CollectionNamesAsListAsync_CollectionInDatabase_ListShouldContainsCollectionName()
-        {
-            database = client.GetDatabase($"test-database-{Guid.NewGuid()}");
-            var collectionName = Guid.NewGuid().ToString();
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            collection.InsertOne(new BsonDocument { });
-
-            var result = await database.CollectionNamesAsListAsync();
-
-            result.Should().Contain(collectionName);
-        }
-
-        [TestMethod]
-        public async Task CollectionNamesAsListAsync_CollectionNotInDatabase_ListShouldNotContainsCollectionName()
-        {
-            database = client.GetDatabase($"test-database-{Guid.NewGuid()}");
-            var collectionName = Guid.NewGuid().ToString();
-
-            var result = await database.CollectionNamesAsListAsync();
-
-            result.Should().NotContain(collectionName);
-        }
-
-        [TestMethod]
-        public void DatabaseNamesAsList_DatabaseDoesExist_ShouldContain()
-        {
-            var databaseName = Guid.NewGuid().ToString();
-            database = client.GetDatabase(databaseName);
-            var collectionName = Guid.NewGuid().ToString();
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            collection.InsertOne(new BsonDocument { });
-
-            var result = client.DatabaseNamesAsList();
-
-            result.Should().Contain(databaseName);
-        }
-
-        [TestMethod]
-        public void DatabaseNamesAsList_DatabaseDoesNotExist_ShouldNotContain()
-        {
-            var databaseName = Guid.NewGuid().ToString();
-
-            var result = client.DatabaseNamesAsList();
-
-            result.Should().NotContain(databaseName);
-        }
-
-        [TestMethod]
-        public async Task DatabaseNamesAsListAsync_DatabaseDoesNotExist_ShouldNotContain()
-        {
-            var databaseName = Guid.NewGuid().ToString();
-
-            var result = await client.DatabaseNamesAsListAsync();
-
-            result.Should().NotContain(databaseName);
-        }
-
-        [TestMethod]
-        public async Task DatabaseNamesAsListAsync_DatabaseDoesExist_ShouldContain()
-        {
-            var databaseName = Guid.NewGuid().ToString();
-            database = client.GetDatabase(databaseName);
-            var collectionName = Guid.NewGuid().ToString();
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            collection.InsertOne(new BsonDocument { });
-
-            var result = await client.DatabaseNamesAsListAsync();
-
-            result.Should().Contain(databaseName);
-        }
-
         [TestMethod]
         public void DropAllCollections_DatabaseWithCollections_ShouldBeEmpty()
         {
